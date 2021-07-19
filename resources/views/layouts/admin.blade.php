@@ -55,11 +55,7 @@
         </button>
         <div class="collapse navbar-collapse  justify-content-end" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item">
-                <label class="nav-link" for="check">
-                    <i class="fas fa-bars" id="sidebar_btn"></i>
-                </label>
-            </li>
+          
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white"><i class="fas fa-user" style="color: white"></i>
                     {{ Auth::user()->name }}
@@ -88,6 +84,11 @@
         <p style="font-size: 16px; color: white">Menu</p><i class="fa fa-list nav_btn"></i>
       </div>
       <div class="mobile_nav_items">
+        <li class="nav-item">
+          <label class="nav-link" for="check">
+              <i class="fas fa-bars" id="sidebar_btn"></i>
+          </label>
+        </li>
         <a href="/dashboard"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
         <a href="/gallery"><i class="fas fa-image"></i><span>Galeri</span></a>
         <a href="/balita"><i class="fas fa-baby-carriage"></i><span>Data Balita</span></a>
@@ -108,12 +109,19 @@
     </div>
     <!--mobile navigation bar end-->
     <!--sidebar start-->
+      <li class="nav-item">
+        <label class="nav-link" for="check">
+            <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+      </li>
     <div class="sidebar bg-dark">
       {{-- <div class="profile_info">
         <img src="https://badoystudio.com/wp-content/uploads/2018/05/usericon.png" class="profile_image" alt="">
         <h4>Admin</h4>
       </div> --}}
+  
       <a href="/dashboard"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+  
       <a href="/gallery"><i class="fas fa-image"></i><span>Galeri</span></a>
       <a href="/balita"><i class="fas fa-baby-carriage"></i><span>Data Balita</span></a>
       <a href="/orangtua"><i class="fas fa-baby-carriage"></i><span>Data Orang Tua</span></a>
