@@ -8,22 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Peminjaman extends Model
 {
     use HasFactory;
-    protected $table = 'peminjaman';
+    protected $table = "peminjamen";
+    protected $primaryKey = "id";
     protected $fillable = [
-        'pemasukan',
-        'no_seri',
-        'tanggal',
-        'pengeluaran',
-        'deskripsi',
+        'pegawai_id',
         'perangkat_id',
-        'user_id'
+        'tanggal_masuk',
+        'tanggal_keluar',
+        'keterangan',
     ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
     public function perangkat()
     {
-        return $this->belongsTo(Perangkat::class);
+        return $this->belongsTo(Perangkat::class, 'perangkat_id', 'id');
+    }
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class);
     }
 }

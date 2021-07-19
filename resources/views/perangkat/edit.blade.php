@@ -8,7 +8,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/dashboard" style="color: #fd6bc5">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/balita" style="color: #fd6bc5">Data Perangkat</a></li>
+            <li class="breadcrumb-item"><a href="/perangkat" style="color: #fd6bc5">Data Perangkat</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit Data Perangkat</li>
         </ol>
     </nav>
@@ -19,73 +19,66 @@
                     @csrf
                     @method('patch')
                     <div class="form-group">
-                        <label for="id_perangkat">Id Perangkat</label>
-                        <input type="text" class="form-control @error('id_perangkat') is-invalid @enderror" name="id_perangkat" id="id_perangkat value=" {{ $perangkat->id_perangkat }}">
+                        <label for="id_perangkat">ID Perangkat</label>
+                        <input autocomplete="off" type="text" class="form-control @error('id_perangkat') is-invalid @enderror" name="id_perangkat" id="id_perangkat" value="{{ $perangkat->id_perangkat }}">
                         @error('id_perangkat')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="no_seri">No Seri</label>
-                                <input type="text" class="form-control @error('no_seri') is-invalid @enderror" name="no_seri" id="no_seri" value="{{ $perangkat->no_seri }}">
-                                @error('no_seri')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
+                    <div class="form-group">
+                        <label for="no_seri">No Seri</label>
+                        <input autocomplete="off" type="text" class="form-control @error('no_seri') is-invalid @enderror" name="no_seri" id="no_seri" value="{{ $perangkat->no_seri }}">
+                        @error('no_seri')
+                        <div class="invalid-feedback">
+                            {{$message}}
                         </div>
-                        <div class="col-8">
-                            <div class="form-group">
-                                <label for="nama_perangkat">Nama Perangkat</label>
-                                <input type="text" class="form-control date @error('nama_perangkat') is-invalid @enderror" name="nama_perangkat" id="nama_perangkat" value="{{ $perangkat->nama_perangkat }}">
-                                @error('nama_perangkat')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="inlineFormCustomSelect">Penanggungjawab</label>
-                        <select name="pegawai_id" class="custom-select mr-sm-2 @error('pegawai_id') is-invalid @enderror" id="inlineFormCustomSelect">
-                            @foreach ($orangTua as $option)
-                            <option value="{{$option->id ?? null}}">{{$option->nama ?? null}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="stok_perangkat">Stok</label>
-                        <input type="text" class="form-control @error('stok_perangkat') is-invalid @enderror" name="stok_perangkat" id="stok_perangkat" value="">{{ $perangkat->stok_perangkat }}</input>
-                        @error('stok_perangkat')
+                        <label for="nama_perangkat">Nama Perangkat</label>
+                        <input autocomplete="off" type="text" class="date form-control @error('nama_perangkat') is-invalid @enderror" name="nama_perangkat" id="tgl_lahir" value="{{ $perangkat->nama_perangkat }}">
+                        @error('nama_perangkat')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group mt-2">
-                        <label for="tahun_pengadaan">Tahun Pengadaan</label>
-                        <input type="text" class="form-control @error('tahun_pengadaan') is-invalid @enderror" name="tahun_pengadaan" id="tahun_pengadaan" value="">{{ $perangkat->tahun_pengadaan }}</input>
-                        @error('stok_perangkat')
+                    <div class="form-group">
+                        <label for="stok">Stok</label>
+                        <input autocomplete="off" type="text" class=" form-control @error('stok') is-invalid @enderror" name="stok" id="tgl_lahir" value="{{ $perangkat->stok }}">
+                        @error('stok')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group mt-2">
+                    <div class="form-group">
+                        <label for="tahun_pengadaan">Tanggal Pengadaan</label>
+                        <input autocomplete="off" type="text" class="date form-control @error('tahun_pengadaan') is-invalid @enderror" name="tahun_pengadaan" id="tahun_pengadaan" value="{{ $perangkat->tahun_pengadaan }}">
+                        @error('tahun_pengadaan')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="type_perangkat">Tipe Perangkat</label>
-                        <input type="text" class="form-control @error('type_perangkat') is-invalid @enderror" name="type_perangkat" id="type_perangkat" value="">{{ $perangkat->type_perangkat }}</input>
+                        <input autocomplete="off" type="text" class=" form-control @error('type_perangkat') is-invalid @enderror" name="type_perangkat" id="type_perangkat" value="{{ $perangkat->type_perangkat }}">
                         @error('type_perangkat')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="inlineFormCustomSelect">Penanggungjawab</label>
+                        <select name="pegawai_id" class="custom-select mr-sm-2 @error('pegawai_id') is-invalid @enderror" id="inlineFormCustomSelect">
+                            @foreach ($pegawai as $option)
+                            <option value="{{$option->id ?? null}}">{{$option->nama ?? null}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-outline-success">Simpan</button>
                 </form>

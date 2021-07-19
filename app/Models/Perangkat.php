@@ -17,16 +17,17 @@ class Perangkat extends Model
         'nama_perangkat',
         'stok',
         'tahun_pengadaan',
-        'pegawai_id',
         'type_perangkat',
+        'pegawai_id',
+
     ];
 
-    public function perangkat()
+    public function pegawai()
     {
         return $this->belongsTo(Pegawai::class, 'pegawai_id', 'id');
     }
-    // public function penimbangan()
-    //{
-    //    return $this->hasMany(Penimbangan::class);
-    //}
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class, 'peminjaman_id', 'id');
+    }
 }

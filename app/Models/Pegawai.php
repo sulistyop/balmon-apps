@@ -19,8 +19,12 @@ class Pegawai extends Model
         'jabatan',
         'foto',
     ];
-    public function balitas()
+    public function perangkat()
     {
-        return $this->hasMany(Balita::class);
+        return $this->hasMany(Perangkat::class);
+    }
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
     }
 }

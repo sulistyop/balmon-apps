@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PerangkatController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/peminjaman', [PeminjamanController::class, 'index']);
+//Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 
 //Route input Data Create Read Update Delete @resource
 Route::resource('/pegawai', PegawaiController::class);
 Route::resource('/perangkat', PerangkatController::class);
-//Route::resource('/peminjaman', PeminjamanController::class);
+Route::resource('/peminjaman', PeminjamanController::class);
+
+
+Route::resource('/akun', AkunController::class);

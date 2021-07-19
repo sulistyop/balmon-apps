@@ -9,26 +9,26 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Id Perangkat</th>
+                <th scope="col">ID Perangkatt</th>
                 <th scope="col">No Seri</th>
                 <th scope="col">Nama Perangkat</th>
                 <th scope="col">Tanggal Peminjaman</th>
                 <th scope="col">Tanggal Pengembalian</th>
-                <th scope="col">Keperluan</th>
-                <th scope="col">Penanggung Jawab</th>
+                <th scope="col">Keterangan</th>
+                <th scope="col">Penanggungjawab</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($peminjaman as $key=> $item)
             <tr>
                 <th scope="row">1</th>
-                <td>{{ $item->id_perangkat }}</td>
-                <td>{{ $item->no_seri}}</td>
-                <td>{{ $item->nama_perangkat }}</td>
-                <td>{{ $item->tanggal_peminjaman }}</td>
-                <td>{{ $item->tanggal_pengembalian }}</td>
-                <td>{{ $item->keperluan }}</td>
-                <td>{{$item->user->nama}}</td>
+                <td>{{ $item->perangkat->id_perangkatt }}</td>
+                <td>{{ $item->perangkat->no_seri}}</td>
+                <td>{{ $item->perangkat->nama_perangkat }}</td>
+                <td>{{ $item->tanggal_masuk }}</td>
+                <td>{{ $item->tanggal_keluar }}</td>
+                <td>{{ $item->keterangan }}</td>
+                <td>{{$item->pegawai->nama}}</td>
             </tr>
             @endforeach
         </tbody>
