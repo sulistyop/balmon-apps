@@ -26,7 +26,7 @@
                             @endforeach
                         </select>
                         <div class="form-group">
-                            <label for="inlineFormCustomSelect">No Seri</label>
+                            <!-- <label for="inlineFormCustomSelect">No Seri</label>
                             <select name="perangkat_id" class="custom-select mr-sm-2 @error('perangkat_id') is-invalid @enderror" id="inlineFormCustomSelect">
                                 @foreach ($perangkat as $option)
                                 <option value="{{$option->id ?? null}}">{{$option->no_seri ?? null}}</option>
@@ -39,7 +39,7 @@
                                     <option value="{{$option->id ?? null}}">{{$option->nama_perangkat ?? null}}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">
