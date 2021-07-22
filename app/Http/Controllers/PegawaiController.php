@@ -7,6 +7,7 @@ use Carbon\Carbon as CarbonCarbon;
 use Illuminate\Support\Carbon;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
 {
@@ -103,7 +104,34 @@ class PegawaiController extends Controller
     public function update(Request $request, $id)
     {
         $pegawai = Pegawai::findOrFail($id);
+
         $pegawai->update($request->all());
+        $request->validate([
+            'nama' => 'required|string',
+            // 'foto' => 'required',
+            'nip' => 'required',
+            'nama' => 'required',
+            'pangkat' => 'required',
+            'golongan' => 'required',
+            'jabatan' => 'required',
+        ]);
+      
+        Storage::disk('public')->delete($pegawai->foto);
+        $image = $request->foto;
+
+        $imageExtension = $request->foto->getClientOriginalExtension();
+        $imageName = 'img_'.time().'.'.$imageExtension;
+        $path = $request->foto->storeAs('images',$imageName,'public');
+   
+        Pegawai::where('id',$id)
+        ->update([
+            'nip'=>$request->nip,
+            'nama'=>$request->nama,
+            'pangkat'=>$request->pangkat,
+            'golongan'=>$request->golongan,
+            'jabatan'=>$request->jabatan,
+            'foto'=>$path, 
+        ]);
         return redirect('/pegawai')->with('toast_success', 'Data Berhasil Terupdate!');
     }
 

@@ -19,14 +19,27 @@
                     @csrf
                     @method('post')
                     <div class="form-group">
-                        <label for="id_perangkat">ID Perangkat</label>
-                        <input autocomplete="off" type="text" class="form-control @error('id_perangkat') is-invalid @enderror" name="id_perangkat" id="id_perangkat" value="{{ old('id_perangkat') }}">
-                        @error('id_perangkat')
-                        <div class="invalid-feedback">
-                            {{$message}}
+                        <div class="row">
+                            <div class="col-9">
+                                <label for="inlineFormCustomSelect">Kategori Perangkat</label>
+                                <select name="id_kategori" class="custom-select mr-sm-2 @error('id_kategori') is-invalid @enderror" id="inlineFormCustomSelect">
+                                    @foreach ($kategori as $option)
+                                    <option value="{{$option->id ?? null}}">{{$option->nama_kategori ?? null}}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_kategori')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-3">
+                                <a href="/kategori/create" class="btn btn-success" style="margin-top:30px"> Tambah Kategori </a>
+                            </div>
                         </div>
-                        @enderror
                     </div>
+
+                
                     <div class="form-group">
                         <label for="no_seri">No Seri</label>
                         <input autocomplete="off" type="text" class="form-control @error('no_seri') is-invalid @enderror" name="no_seri" id="no_seri" value="{{ old('no_seri') }}">

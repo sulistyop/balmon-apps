@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriPerangkat;
 use App\Models\Pegawai;
 use App\Models\Perangkat;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class PerangkatController extends Controller
     public function create()
     {
         $pegawai = Pegawai::all();
-        return view('perangkat.create', compact('pegawai'));
+        $kategori = KategoriPerangkat::all();
+        return view('perangkat.create', compact('pegawai','kategori'));
     }
 
 
@@ -29,7 +31,6 @@ class PerangkatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_perangkat' => 'required',
             'no_seri' => 'required',
             'nama_perangkat' => 'required',
             'stok' => 'required',
@@ -52,14 +53,14 @@ class PerangkatController extends Controller
     {
         $perangkat = Perangkat::findOrFail($id);
         $pegawai = Pegawai::all();
-        return view('perangkat.edit', compact('pegawai', 'perangkat'));
+        $kategori = KategoriPerangkat::all();
+        return view('perangkat.edit', compact('pegawai', 'perangkat','kategori'));
     }
 
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_perangkat' => 'required',
             'no_seri' => 'required',
             'nama_perangkat' => 'required',
             'stok' => 'required',
@@ -69,7 +70,6 @@ class PerangkatController extends Controller
         ]);
         Perangkat::where('id', $id)
             ->update([
-                'id_perangkat' => $request->id_perangkat,
                 'no_seri' => $request->no_seri,
                 'nama_perangkat' => $request->nama_perangkat,
                 'stok' => $request->stok,

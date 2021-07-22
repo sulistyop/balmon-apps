@@ -16,9 +16,11 @@ class CreatePeminjamanTable extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
             $table->integer('pegawai_id');
-            $table->foreignId('perangkat_id');
-            $table->string('tanggal_masuk');
-            $table->string('tanggal_keluar');
+            $table->integer('status_id')->default(0);
+            $table->foreignId('id_perangkat');
+            $table->string('jumlah_barang');
+            $table->string('tanggal_masuk')->nullable();
+            $table->string('tanggal_keluar')->nullable();
             $table->string('keterangan');
             $table->timestamps();
         });

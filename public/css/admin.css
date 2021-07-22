@@ -37,7 +37,7 @@ body{
     z-index: 1;
     top: 0;
     background: #343a40;
-    margin-top: 76px;
+    margin-top: 54px;
     padding-top: 30px;
     position: fixed;
     left: 0;
@@ -98,10 +98,10 @@ body{
     color: #fff;
     position: fixed;
     cursor: pointer;
-    left: 300px;
     font-size: 20px;
-    margin: 5px 0;
+  
     transition: 0.5s;
+      transition: 0.5s;
     transition-property: color;
   }
   

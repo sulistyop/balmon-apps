@@ -64,8 +64,26 @@
                         @enderror
                     </div>
                     <div class="form-group mt-2">
-                        <input type="file" id="foto" name="foto">
-                        <input type="submit" value="Upload" </div> </div> <button type="submit" class="btn btn-outline-success">Simpan</button>
+                        <label for="foto">Gambar</label>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <div class="d-flex justify-content-center">
+                                        <img src="" id="preview" class="img-thumbnail">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div id="msg"></div>
+                                    <input type="file" name="foto" class="file" accept="image/*" hidden>
+                                    <div class="input-group my-3">
+                                        <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+                                        <div class="input-group-append">
+                                        <button type="button" class="browse btn btn-primary">Browse...</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Simpan</button>
                 </form>
             </div>
         </div>
@@ -74,6 +92,24 @@
 <script type="text/javascript">
     $('.date').datepicker({
         format: 'dd-mm-yyyy'
+    });
+</script>
+<script>
+    $(document).on("click", ".browse", function() {
+    var file = $(this).parents().find(".file");
+    file.trigger("click");
+    });
+    $('input[type="file"]').change(function(e) {
+    var fileName = e.target.files[0].name;
+    $("#file").val(fileName);
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("preview").src = e.target.result;
+    };
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
     });
 </script>
 

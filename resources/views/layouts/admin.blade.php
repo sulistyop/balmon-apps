@@ -39,7 +39,6 @@
       position: fixed;
       width: 100%;
     }
-
     .border-left-primary {
       border-left: 0.25rem solid #ff7ec9 !important;
       /*Warna untuk sisi kiri di semua menu dashboard back end*/
@@ -52,18 +51,13 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" {{--style="background: #ff7ec9"--}}>
     <div class="container">
       <a href="/dashboard" class="navbar-brand">
-        <img src={{ asset('assets/img/POSYANDU.png') }}{{--"assets/img/POSYANDU.png"--}} alt="" style="height: 50px;" class="img-fluid"><span>POSYANDU</span>
+        {{-- <img src={{ asset('assets/img/POSYANDU.png') }}  alt="" style="height: 50px;" class="img-fluid"><span>POSYANDU</span> --}}
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse  justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <label class="nav-link" for="check">
-              <i class="fas fa-bars" id="sidebar_btn"></i>
-            </label>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white"><i class="fas fa-user" style="color: white"></i>
               {{ Auth::user()->name }}
@@ -92,25 +86,36 @@
     </div>
     <div class="mobile_nav_items">
       <a href="/dashboard"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-      <a href="/gallery"><i class="fas fa-image"></i><span>Galeri</span></a>
-      <a href="/pegawai"><i class="fas fa-baby-carriage"></i><span>Data Pegawai</span></a>
-      <a href="/perangkat"><i class="fas fa-baby-carriage"></i><span>Data Perangkat</span></a>
-      <a href="/peminjaman"><i class="fas fa-baby-carriage"></i><span>Data Peminjaman</span></a>
+      <a href="/kategori"><i class="fas fa-layer-group"></i><span>Kategori</span></a>
+      <a href="/pegawai"><i class="fas fa-address-card"></i><span>Data Pegawai</span></a>
+      <a href="/perangkat"><i class="fas fa-toolbox"></i><span>Data Perangkat</span></a>
+      <a href="/peminjaman"><i class="fas fa-archive"></i><span>Data Peminjaman</span></a>
+      <a href="/riwayat"><i class="fas fa-history"></i><span>Riwayat Peminjaman</span></a>
       <a href="/akun"><i class="fas fa-user"></i><span>Data Pengguna</span></a>
     </div>
   </div>
   <!--mobile navigation bar end-->
+  <li class="nav-item">
+   
+  </li>
   <!--sidebar start-->
   <div class="sidebar bg-dark">
+    
     {{-- <div class="profile_info">
         <img src="https://badoystudio.com/wp-content/uploads/2018/05/usericon.png" class="profile_image" alt="">
         <h4>Admin</h4>
       </div> --}}
+    <a>
+      <label for="check">
+      <i class="fas fa-list" id="sidebar_btn"></i>
+      </label>
+    </a>
     <a href="/dashboard"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-    <a href="/gallery"><i class="fas fa-image"></i><span>Galeri</span></a>
-    <a href="/pegawai"><i class="fas fa-baby-carriage"></i><span>Data Pegawai</span></a>
-    <a href="/perangkat"><i class="fas fa-baby-carriage"></i><span>Data Perangkat</span></a>
-    <a href="/peminjaman"><i class="fas fa-baby-carriage"></i><span>Data Peminjaman</span></a>
+    <a href="/kategori"><i class="fas fa-layer-group"></i><span>Kategori</span></a>
+    <a href="/pegawai"><i class="fas fa-address-card"></i><span>Data Pegawai</span></a>
+    <a href="/perangkat"><i class="fas fa-toolbox"></i><span>Data Perangkat</span></a>
+    <a href="/peminjaman"><i class="fas fa-archive"></i><span>Data Peminjaman</span></a>
+    <a href="/riwayat"><i class="fas fa-history"></i><span>Riwayat Peminjaman</span></a>
     <a href="/akun"><i class="fas fa-user"></i><span>Data Pengguna</span></a>
 
   </div>
@@ -139,7 +144,6 @@
     /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
     var dropdown = document.getElementsByClassName("dropdown-btn");
     var i;
-
     for (i = 0; i < dropdown.length; i++) {
       dropdown[i].addEventListener("click", function() {
         this.classList.toggle("active-side");

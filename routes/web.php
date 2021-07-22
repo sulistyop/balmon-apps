@@ -5,6 +5,8 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\RiwayatController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +34,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/pegawai', PegawaiController::class);
 Route::resource('/perangkat', PerangkatController::class);
 Route::resource('/peminjaman', PeminjamanController::class);
-
-
+Route::resource('/kategori', KategoriController::class);
 Route::resource('/akun', AkunController::class);
+Route::resource('/riwayat', RiwayatController::class);
+
+Route::get('/cetak-peminjaman', [App\Http\Controllers\PeminjamanController::class, 'cetakPeminjaman'])->name('cetak-peminjaman');
+//custom Route
+Route::post('/pengembalian', [PeminjamanController::class, 'pengembalian']);
+
+//Custom Print
+// Route::get('/')

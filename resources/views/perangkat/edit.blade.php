@@ -19,9 +19,14 @@
                     @csrf
                     @method('patch')
                     <div class="form-group">
-                        <label for="id_perangkat">ID Perangkat</label>
-                        <input autocomplete="off" type="text" class="form-control @error('id_perangkat') is-invalid @enderror" name="id_perangkat" id="id_perangkat" value="{{ $perangkat->id_perangkat }}">
-                        @error('id_perangkat')
+                        <label for="inlineFormCustomSelect">Kategori Perangkat</label>
+                        <select name="id_kategori" class="custom-select mr-sm-2 @error('id_kategori') is-invalid @enderror" id="inlineFormCustomSelect">
+                            <option value="{{$perangkat->id_kategori}}">{{$perangkat->kategori->nama_kategori}}</option>
+                            @foreach ($kategori as $option)
+                            <option value="{{$option->id ?? null}}">{{$option->nama_kategori ?? null}}</option>
+                            @endforeach
+                        </select>
+                        @error('id_kategori')
                         <div class="invalid-feedback">
                             {{$message}}
                         </div>

@@ -20,26 +20,17 @@
                     @method('post')
                     <div class="form-group">
                         <label for="inlineFormCustomSelect">ID Perangkat</label>
-                        <select name="perangkat_id" class="custom-select mr-sm-2 @error('perangkat_id') is-invalid @enderror" id="inlineFormCustomSelect">
+                        <select name="id_perangkat" class="custom-select mr-sm-2 @error('id_perangkat') is-invalid @enderror" id="inlineFormCustomSelect">
                             @foreach ($perangkat as $option)
-                            <option value="{{$option->id ?? null}}">{{$option->id_perangkat ?? null}}</option>
+                            <option value="{{$option->id ?? null}}">{{$option->id." - ".$option->kategori->nama_kategori." - ".$option->no_seri." - ".$option->nama_perangkat ?? null}}</option>
                             @endforeach
                         </select>
+                        @error('tanggal_keluar')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                        @enderror
                         <div class="form-group">
-                            <!-- <label for="inlineFormCustomSelect">No Seri</label>
-                            <select name="perangkat_id" class="custom-select mr-sm-2 @error('perangkat_id') is-invalid @enderror" id="inlineFormCustomSelect">
-                                @foreach ($perangkat as $option)
-                                <option value="{{$option->id ?? null}}">{{$option->no_seri ?? null}}</option>
-                                @endforeach
-                            </select>
-                            <div class="form-group">
-                                <label for="inlineFormCustomSelect">Nama Perangkat</label>
-                                <select name="perangkat_id" class="custom-select mr-sm-2 @error('perangkat_id') is-invalid @enderror" id="inlineFormCustomSelect">
-                                    @foreach ($perangkat as $option)
-                                    <option value="{{$option->id ?? null}}">{{$option->nama_perangkat ?? null}}</option>
-                                    @endforeach
-                                </select>
-                            </div> -->
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">
@@ -51,35 +42,44 @@
                                         </div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="tanggal_masuk">Tanggal Pengembalian</label>
                                         <input autocomplete="off" type="text" class="date form-control @error('tanggal_masuk') is-invalid @enderror" name="tanggal_masuk" id="tanggal_masuk" value="{{ old('tanggal_masuk') }}">
-                                        @error('tanggal_masuk')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
+                                    @error('tanggal_masuk')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
                                     </div>
-                                </div>
+                                    @enderror
+                                </div> --}}
                             </div>
-                            <div class="form-group">
-                                <label for="keterangan">Keterangan</label>
-                                <input autocomplete="off" type="text" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" id="keterangan" value="{{ old('keterangan') }}">
-                                @error('keterangan')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <input autocomplete="off" type="text" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" id="keterangan" value="{{ old('keterangan') }}">
+                            @error('keterangan')
+                            <div class="invalid-feedback">
+                                {{$message}}
                             </div>
-                            <div class="form-group">
-                                <label for="inlineFormCustomSelect">Penanggungjawab</label>
-                                <select name="pegawai_id" class="custom-select mr-sm-2 @error('pegawai_id') is-invalid @enderror" id="inlineFormCustomSelect">
-                                    @foreach ($pegawai as $option)
-                                    <option value="{{$option->id ?? null}}">{{$option->nama ?? null}}</option>
-                                    @endforeach
-                                </select>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="jumlah_barang">Jumlah Barang Dipinjam</label>
+                            <input autocomplete="off" type="text" class="form-control @error('jumlah_barang') is-invalid @enderror" name="jumlah_barang" id="jumlah_barang" value="{{ old('jumlah_barang') }}">
+                            @error('jumlah_barang')
+                            <div class="invalid-feedback">
+                                {{$message}}
                             </div>
-                            <button type="submit" class="btn btn-outline-success">Simpan</button>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inlineFormCustomSelect">Penanggungjawab</label>
+                            <select name="pegawai_id" class="custom-select mr-sm-2 @error('pegawai_id') is-invalid @enderror" id="inlineFormCustomSelect">
+                                @foreach ($pegawai as $option)
+                                <option value="{{$option->id ?? null}}">{{$option->nama ?? null}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Simpan</button>
                 </form>
             </div>
         </div>

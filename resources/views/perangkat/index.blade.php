@@ -48,58 +48,58 @@
         {{ session('status') }}
     </div>
     @endif
-    <div class="">
-        <div class="card border-left-primary shadow p-3 mb-5 bg-white rounded">
-            <div class="d-flex justify-content-lg-end mb-3">
-                <a class="btn btn-outline-secondary" href="/perangkat/create"><span class="icon text">
-                        <i class="fas fa-plus"></i>
-                    </span>Tambah Data</a>
-
-            </div>
-            <div class="table-responsive">
-                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
-                    <thead style="background: #fd6bc5" {{--#1cc88a--}}>
-                        <tr>
-                            <th scope="col">No </th>
-                            <th scope="col">ID Perangkat</th>
-                            <th scope="col">No Seri</th>
-                            <th scope="col">Nama Perangkat</th>
-                            <th scope="col">Stok </th>
-                            <th scope="col">Tanggal Pengadaan</th>
-                            <th scope="col">Tipe Perangkat</th>
-                            <th scope="col">Penanggungjawab</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        @foreach($perangkat as $key => $item)
-                        <tr>
-                            <th scope="row">{{ $key + $perangkat->firstItem()}}</th>
-                            <td>{{$item->id_perangkat}}</td>
-                            <td>{{$item->no_seri}}</td>
-                            <td>{{$item->nama_perangkat}}</td>
-                            <td>{{$item->stok}}</td>
-                            <td>{{date('d F Y',strtotime($item->tanggal_pengadaan))}}</td>
-                            <td>{{$item->type_perangkat}}</td>
-                            <td>{{$item->pegawai->nama}}</td>
-                            <td>
-                                <form action="/perangkat/{{$item->id}}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-                                {{-- <a href="/perangkat/{{$item->id}}" class="btn btn-primary" ><i class="fas fa-search"></i></a> --}}
-                                <a href="/perangkat/{{$item->id}}/edit" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-
-                </table>
-                {{$perangkat->links()}}
-            </div>
-        </div>
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
     </div>
+    @endif
+    <div class="container">
+        <div class="mt-2 mb-2">
+          <a href="/perangkat/create" class="btn btn-success"> Tambah Data </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped"  width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">No Seri</th>
+                        <th scope="col">Nama Perangkat</th>
+                        <th scope="col">Stok </th>
+                        <th scope="col">Tanggal Pengadaan</th>
+                        <th scope="col">Tipe Perangkat</th>
+                        <th scope="col">Penanggungjawab</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    @foreach($perangkat as $key => $item)
+                    <tr>
+                        <td>{{$item->id}}</td>
+                        <td>{{$item->kategori->nama_kategori}}</td>
+                        <td>{{$item->no_seri}}</td>
+                        <td>{{$item->nama_perangkat}}</td>
+                        <td>{{$item->stok}}</td>
+                        <td>{{date('d F Y',strtotime($item->tanggal_pengadaan))}}</td>
+                        <td>{{$item->type_perangkat}}</td>
+                        <td>{{$item->pegawai->nama}}</td>
+                        <td>
+                            <form action="/perangkat/{{$item->id}}" method="post" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                            {{-- <a href="/perangkat/{{$item->id}}" class="btn btn-primary" ><i class="fas fa-search"></i></a> --}}
+                            <a href="/perangkat/{{$item->id}}/edit" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
 
+            </table>
+            {{$perangkat->links()}}
+        </div>
+
+    </div>
     @endsection
