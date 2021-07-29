@@ -16,7 +16,9 @@
 <div class="container">
     <div class="mt-2 mb-2">
         <a href="/peminjaman/create" class="btn btn-success"> Tambah Data <i class="fas fa-plus-square"></i></a>
-        <a href="/peminjaman/cetak-peminjaman" class="btn btn-primary"> Cetak Peminjaman <i class="fas fa-print"></i></a>
+    <form action="{{url('/cetak')}}" method="get">
+        <button class="btn btn-primary" type="submit"> Cetak Peminjaman <i class="fas fa-print"></i></button>
+    </form>
     </div>
     <table class="table table-striped">
         <thead>

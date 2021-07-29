@@ -38,7 +38,7 @@ Route::resource('/kategori', KategoriController::class);
 Route::resource('/akun', AkunController::class);
 Route::resource('/riwayat', RiwayatController::class);
 
-Route::get('/cetak-peminjaman', [App\Http\Controllers\PeminjamanController::class, 'cetakPeminjaman'])->name('cetak-peminjaman');
+Route::get('/cetak', [PeminjamanController::class, 'cetakPeminjaman']);
 //custom Route
 Route::post('/pengembalian', [PeminjamanController::class, 'pengembalian']);
 

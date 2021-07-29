@@ -6,6 +6,7 @@ use App\Models\Pegawai;
 use App\Models\Perangkat;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PeminjamanController extends Controller
 {
@@ -16,16 +17,15 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::with('perangkat', 'pegawai')->paginate(10);
+        $peminjaman = Peminjaman::with('perangkat')->paginate(10);
         return view('Peminjaman.index', compact('peminjaman'));
     }
     public function cetakPeminjaman()
     {
         $cetakPeminjaman = Peminjaman::with('perangkat', 'pegawai')->get();
-        return view('Peminjaman.Cetak-peminjaman', compact('cetakPeminjaman'));
+        $pdf = PDF::loadview('peminjaman.cetak-peminjaman',compact('cetakPeminjaman'));
+        return $pdf->download('_laporan_kas_masuk.pdf'); 
     }
-
-
 
     /**
      * Show the form for creating a new resource.
